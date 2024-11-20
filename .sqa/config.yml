@@ -1,0 +1,74 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/SPECFEM/specfem3d:
+      branch: master
+      repo: https://github.com/SPECFEM/specfem3d.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/SPECFEM/specfem3d git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-champagne-numbat.sh
+        container: qc.acc_wimpy-sepia-uakari
+  QC.Doc:
+    repos:
+      github.com/SPECFEM/specfem3d find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-dandelion-angora.sh
+        container: qc.doc_blurry-myrtle-reindeer
+      github.com/SPECFEM/specfem3d git:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-silver-mist.sh
+        container: qc.doc_muzzy-magnolia-capybara
+      github.com/SPECFEM/specfem3d markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-gold-turkey.sh
+        container: qc.doc_sleazy-persimmon-tamarin
+  QC.Lic:
+    repos:
+      github.com/SPECFEM/specfem3d licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-firebrick-turtle.sh
+        container: qc.lic_sleepy-myrtle-elephant
+  QC.Met:
+    repos:
+      github.com/SPECFEM/specfem3d cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.skanky-chestnut-toucan.sh
+        container: qc.met_gloppy-amaranth-booby
+  QC.Sec:
+    repos:
+      github.com/SPECFEM/specfem3d bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-violet-dragon.sh
+        container: qc.sec_foggy-ultramarine-hippopotamus
+  QC.Sty:
+    repos:
+      github.com/SPECFEM/specfem3d flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-cornflower-dodo.sh
+        container: qc.sty_sloppy-mauve-molly
+      github.com/SPECFEM/specfem3d oclint:
+        commands:
+        - /usr/bin/env sh .sqa/script.chewy-heliotrope-ostrich.sh
+        container: qc.sty_gimpy-teal-jaguar
+  QC.Uni:
+    repos:
+      github.com/SPECFEM/specfem3d pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.cranky-chocolate-dugong.sh
+        container: qc.uni_wheezy-flax-drever
+  QC.Ver:
+    repos:
+      github.com/SPECFEM/specfem3d get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-goldenrod-swan.sh
+        container: qc.ver_snippy-wheat-lemming
+timeout: 5400
